@@ -1,0 +1,41 @@
+<div class="container p-5" >
+    <div class="row  justify-content-center">
+        <div class="btn-group pt-5 pb-5 pl-3 " role="group" aria-label="Basic example">
+            <button type="button" (click)="actualiser()" class="btn btn-primary mr-2">all prets</button>
+            <button type="button" (click)="getPretEncours()" class="btn btn-secondary mr-2">Prets encours</button>
+            <button type="button" (click)="getPretAccepter()" class="btn btn-success mr-2">Prets accepter</button>
+            <button type="button" (click)="getPretRefuser()" class="btn btn-danger mr-2">Prets refuser</button>
+        </div>
+    </div>
+    
+
+    <div *ngIf="prets?.length==0" class="col-12 alert alert-warning mt-3">
+        No Pret found
+    </div>
+    
+    <div class="card b-1 hover-shadow mb-20 " *ngFor="let pret of prets">
+        <div class="media card-body">
+            <div class="media-left pr-12">
+                <!-- <img class="avatar avatar-xl no-radius" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="..."> -->
+            </div>
+            <div class="media-body">
+                <div class="mb-2">
+                    <span class="fs-20 pr-16">{{pret.user.username}}</span>
+                </div>
+                <small class="fs-16 fw-300 ls-1">{{pret.typePret.nameType}}</small>
+            </div>
+            <div class="media-right text-right d-none d-md-block">
+                <p class="fs-14 text-fade mb-12"><i class="fa fa-map-marker pr-1"></i> Fairfield, IA</p>
+                <span class="text-fade"><i class="fa fa-money pr-1"></i> Echeance :  {{pret.echeance}} DT</span>
+            </div>
+        </div>
+
+        <footer class="card-footer flexbox ">
+            <div>
+                <strong>Applied on:</strong>
+                <span>{{pret.debutRemb}}</span>
+            </div>
+            <button type="button" routerLink="/pretsDetails/{{pret.id}}" class="btn btn-primary float-right">acceder</button>
+        </footer>
+    </div>
+</div>

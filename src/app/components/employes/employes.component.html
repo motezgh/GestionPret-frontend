@@ -1,0 +1,331 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<br>
+<br>
+<br>
+<div class="container" >
+    <div class="col-12">
+        <!--searchComponent-->
+        <app-search></app-search>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search Here" [(ngModel)]="term">
+        </div>
+        <br>
+        <p>
+        <button class="btn btn-primary float-right" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Ajouter un employer
+          </button>
+        </p>
+        <br>
+        <div class="collapse" id="collapseExample">
+            
+          <div class="card card-body">
+
+
+           
+
+
+            <form novalidate [formGroup]="addUserForm"   (ngSubmit)="addUser()">
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Email address</label>
+                  <input type="email" formControlName="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com"
+                  [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                
+                  <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                    <div *ngIf="f.email.errors.required">Email is required</div>
+                    <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput2">Username</label>
+                    <input type="text" formControlName="username" class="form-control" id="exampleFormControlInput2" 
+                    [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">username is required</div>
+                        
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlInput3">Password</label>
+                    <input type="password" formControlName="password" class="form-control" id="exampleFormControlInput3" 
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">password is required</div>
+                        
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleFormControlInput4">Departement</label>
+                    <input type="text" formControlName="departement" class="form-control" 
+                    [ngClass]="{ 'is-invalid': submitted && f.departement.errors }">
+                    <div *ngIf="submitted && f.departement.errors" class="invalid-feedback">
+                        <div *ngIf="f.departement.errors.required">fonction is required</div>
+                        
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="exampleFormControlInput4">Fonction</label>
+                    <input type="text" formControlName="fonction" class="form-control"  
+                    [ngClass]="{ 'is-invalid': submitted && f.fonction.errors }">
+                    <div *ngIf="submitted && f.fonction.errors" class="invalid-feedback">
+                        <div *ngIf="f.fonction.errors.required">fonction is required</div>
+                        
+                    </div>
+                  </div>
+                  
+
+                  <div class="form-group">
+                    <label for="exampleFormControlInput4">Salaire</label>
+                    <input type="text" formControlName="salaire" class="form-control" id="exampleFormControlInput4" 
+                    [ngClass]="{ 'is-invalid': submitted && f.salaire.errors }">
+                    <div *ngIf="submitted && f.salaire.errors" class="invalid-feedback">
+                        <div *ngIf="f.salaire.errors.required">salaire is required</div>
+                        
+                    </div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect5">Type du contrat</label>
+                    <select class="form-control" id="exampleFormControlSelect5" formControlName="contratType"
+                    [ngClass]="{ 'is-invalid': submitted && f.contratType.errors }">
+                      <option *ngFor="let contrat of contrats" [ngValue]="contrat">{{contrat}}</option>
+                      
+                    </select>
+                    <div *ngIf="submitted && f.contratType.errors" class="invalid-feedback">
+                        <div *ngIf="f.contratType.errors.required">Type contrat is required</div>
+                        
+                    </div>
+                  </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <label for="dp" >Date debut contrat</label>
+                      <input class="form-control" placeholder="dd/mm/yyyy" formControlName="debutContrat"
+                             name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker"
+                             id="dp"
+                             [ngClass]="{ 'is-invalid': submitted && f.debutContrat.errors }">
+                             
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                      </div>
+                      <div *ngIf="submitted && f.debutContrat.errors" class="invalid-feedback">
+                        <div *ngIf="f.debutContrat.errors.required">Date debut contrat is required</div>
+                        
+                    </div>
+                    </div>
+                  </div>
+               
+                  <div class="form-group" *ngIf="f.contratType.value!='CDI'">
+                    <div class="input-group">
+                        <label for="dp2" >Date fin contrat</label>
+                      <input class="form-control" placeholder="dd/mm/yyyy" formControlName="finContrat"
+                            id="dp2" name="dp" [(ngModel)]="model2" ngbDatepicker #i="ngbDatepicker"
+                             [ngClass]="{ 'is-invalid': submitted && f.finContrat.errors }">
+                             
+                      <div class="input-group-append">
+                        <button class="btn btn-outline-secondary calendar" (click)="i.toggle()" type="button"></button>
+                      </div>
+                      <div *ngIf="submitted && f.finContrat.errors" class="invalid-feedback">
+                        <div *ngIf="f.finContrat.errors.required">Date fin contrat is required</div>
+                        
+                    </div>
+                    </div>
+                  </div>
+                
+                  
+                
+                <button type="submit" class="btn btn-primary mb-2">Confirmer</button>
+                <div class="alert alert-danger" role="alert" *ngIf="showErrorMessage">
+                   {{errorMessageAdd}}
+                  </div>
+                  <div class="alert alert-success" role="alert" *ngIf="showSuccessMessage">
+                    Employe cree
+                  </div>
+              </form>
+              
+          </div>
+        </div>
+    </div>
+    <br>
+<div class="col-12" >
+    
+    <div class="card b-1 hover-shadow mb-20" *ngFor="let user of users | filter:term | paginate: {id:'listing_pagination' ,
+                itemsPerPage:5, currentPage:page,totalItems:users?.length}" >
+        
+        <div class="media card-body">
+            <div class="media-left pr-12">
+                <!-- <img class="avatar avatar-xl no-radius" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="...">  -->
+            </div>
+            <div class="media-body">
+                <div class="mb-2">
+                    <span class="fs-20 pr-16">{{user.prenom}} {{user.nom}}</span>
+                </div>
+                <small class="fs-16 fw-300 ls-1">{{user.departement}} : {{user.fonction}}</small>
+            </div>
+            <div class="media-right text-right d-none d-md-block">
+                <p class="fs-14 text-fade mb-12"><i class="fa fa-map-marker pr-1"></i> {{user.adresse}}</p>
+                <span class="text-fade"><i class="fa fa-money pr-1"></i> {{user.salaire}} DT</span>
+            </div>
+        </div>
+        <footer class="card-footer flexbox align-items-center">
+            <!-- <div>
+                <strong>Type Contrat:</strong>
+                <span>{{user.contratType}}</span>
+            </div>
+            <div>
+                <strong>Debut Contrat:</strong>
+                <span>{{user.debutContrat}}</span>
+            </div>
+            <div *ngIf="user.contratType!=='CDI'">
+                <strong>Fin Contrat:</strong>
+                <span>{{user.finContrat}}</span>
+            </div> -->
+            <div class="card-hover-show">
+                <!-- <a class="btn btn-xs fs-10 btn-bold btn-info" href="#">Download CV</a> -->
+                <!-- <a class="btn btn-xs fs-10 btn-bold btn-primary" href="#" data-toggle="modal" data-target="#modal-contact">Contact</a> -->
+                <!-- Button trigger modal -->
+               <br>
+                <div class="col-12 container justify-content-center">
+
+                    <div class="row justify-content-center">
+                        <!-- data-toggle="modal" data-target="#exampleModal" -->
+                   <button type="button"  [routerLink]="['/employesDetails/',user.id]" class="btn btn-md fs-10 btn-bold btn-primary col-8 col-sm-4 col-md-3 " >  
+                       Plus de details
+                       </button>
+                   </div>
+
+                    <div class="row justify-content-center">
+                        <button type="button" (click)="deletUser(user.id)" class="btn btn-md fs-10 btn-bold btn-danger col-8 col-sm-4 col-md-3 "  >
+                            Supprimer
+                        </button>
+                    </div>
+                    
+                   
+
+                        
+                </div>
+                <br>
+
+            </div>
+           
+        </footer>
+        
+    </div>
+
+    <div *ngIf="users?.length==0" class="col-12 alert alert-warning mt-3">
+        No users found
+    </div>
+
+    <pagination-controls  id='listing_pagination'  responsive="true" (pageChange)="page = $event"></pagination-controls>
+
+    <!-- <div class="card b-1 hover-shadow mb-20">
+        <div class="media card-body">
+            <div class="media-left pr-12">
+                <img class="avatar avatar-xl no-radius" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="...">
+            </div>
+            <div class="media-body">
+                <div class="mb-2">
+                    <span class="fs-20 pr-16">Maryam Amiri</span>
+                </div>
+                <small class="fs-16 fw-300 ls-1">Designer</small>
+            </div>
+            <div class="media-right text-right d-none d-md-block">
+                <p class="fs-14 text-fade mb-12"><i class="fa fa-map-marker pr-1"></i> Fairfield, IA</p>
+                <span class="text-fade"><i class="fa fa-money pr-1"></i> $45 per hour</span>
+            </div>
+        </div>
+
+        <footer class="card-footer flexbox align-items-center">
+            <div>
+                <strong>Applied on:</strong>
+                <span>17 Jan, 2017</span>
+            </div>
+            <div class="card-hover-show">
+                <a class="btn btn-xs fs-10 btn-bold btn-info" href="#">Download CV</a>
+                <a class="btn btn-xs fs-10 btn-bold btn-primary" href="#" data-toggle="modal" data-target="#modal-contact">Contact</a>
+                <a class="btn btn-xs fs-10 btn-bold btn-warning" href="#">Delete</a>
+            </div>
+        </footer>
+    </div>
+
+    <div class="card b-1 hover-shadow mb-20">
+        <div class="media card-body">
+            <div class="media-left pr-12">
+                <img class="avatar avatar-xl no-radius" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="...">
+            </div>
+            <div class="media-body">
+                <div class="mb-2">
+                    <span class="fs-20 pr-16">Frank Camly</span>
+                </div>
+                <small class="fs-16 fw-300 ls-1">Front end developer</small>
+            </div>
+            <div class="media-right text-right d-none d-md-block">
+                <p class="fs-14 text-fade mb-12"><i class="fa fa-map-marker pr-1"></i> Seattle, WA</p>
+                <span class="text-fade"><i class="fa fa-money pr-1"></i> $40 per hour</span>
+            </div>
+        </div>
+
+        <footer class="card-footer flexbox align-items-center">
+            <div>
+                <strong>Applied on:</strong>
+                <span>15 Jan, 2017</span>
+            </div>
+            <div class="card-hover-show">
+                <a class="btn btn-xs fs-10 btn-bold btn-info" href="#">Download CV</a>
+                <a class="btn btn-xs fs-10 btn-bold btn-primary" href="#" data-toggle="modal" data-target="#modal-contact">Contact</a>
+                <a class="btn btn-xs fs-10 btn-bold btn-warning" href="#">Delete</a>
+            </div>
+        </footer>
+    </div>
+
+    <div class="card b-1 hover-shadow mb-20">
+        <div class="media card-body">
+            <div class="media-left pr-12">
+                <img class="avatar avatar-xl no-radius" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="...">
+            </div>
+            <div class="media-body">
+                <div class="mb-2">
+                    <span class="fs-20 pr-16">Tim Hank</span>
+                </div>
+                <small class="fs-16 fw-300 ls-1">Web developer</small>
+            </div>
+            <div class="media-right text-right d-none d-md-block">
+                <p class="fs-14 text-fade mb-12"><i class="fa fa-map-marker pr-1"></i> Fremont, CA</p>
+                <span class="text-fade"><i class="fa fa-money pr-1"></i> $55 per hour</span>
+            </div>
+        </div>
+
+        <footer class="card-footer flexbox align-items-center">
+            <div>
+                <strong>Applied on:</strong>
+                <span>11 Jan, 2017</span>
+            </div>
+            <div class="card-hover-show">
+                <a class="btn btn-xs fs-10 btn-bold btn-info" href="#">Download CV</a>
+                <a class="btn btn-xs fs-10 btn-bold btn-primary" href="#" data-toggle="modal" data-target="#modal-contact">Contact</a>
+                <a class="btn btn-xs fs-10 btn-bold btn-warning" href="#">Delete</a>
+            </div>
+        </footer>
+    </div> -->
+
+
+   
+
+    <!-- <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+        </ul>
+    </nav> -->
+    <br>
+</div>
+</div>

@@ -1,0 +1,43 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="/home"><img src="./assets/images/SIGA.png" width="60" height="30" class="d-inline-block align-top" alt="" loading="lazy"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item ">
+          <a class="nav-link" routerLink="/home" routerLinkActive='active'>Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/createPret" routerLinkActive='active' *ngIf="isLoggedIn && (isResponsable || isEmploye)">Créer une demande de pret</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" routerLink="/prets" routerLinkActive='active' *ngIf="isResponsable">Gestions des Prets</a>
+        </li> -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" *ngIf="isLoggedIn && isResponsable" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Espace RH
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" routerLink="/employes" routerLinkActive='active'>Gestion des Employes</a>
+            <a class="dropdown-item" routerLink="/prets" routerLinkActive='active'>Gestions des Prets</a>
+            
+          </div>
+        </li>
+        
+      </ul>
+      <ul class="navbar-nav float-right">
+        <li class="nav-item float-right">
+            <a class="nav-link float-right" *ngIf="!isLoggedIn" routerLink="/login" routerLinkActive='active'>Login</a>
+          </li>
+          <li class="nav-item">
+            <a  class="nav-link" *ngIf="isLoggedIn" routerLink="/profile" routerLinkActive='active'>{{ username |uppercase }}</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link "  *ngIf="isLoggedIn" routerLink="/login"  (click)="logout()">Logout</a>
+          </li>
+      </ul>
+    </div>
+  </nav>

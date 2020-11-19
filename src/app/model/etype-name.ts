@@ -1,0 +1,6 @@
+export enum EtypeName {
+    MARIAGE='MARIAGE',
+    BATIMENT='BATIMENT',
+    VOITURE='VOITURE',
+    EXCEPTIONNEL='EXEPTIONNEL'
+}

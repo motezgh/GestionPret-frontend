@@ -1,0 +1,54 @@
+<div class="container pt-5" >
+    <div class="row">
+      <div class="col-6">
+        Creer un pret
+      </div>
+      <div class="col-6">
+        <form novalidate [formGroup]="pretForm" (ngSubmit)="demandePret()" >
+          <div class="form-group">
+            <label >Montant</label>
+            <input type="text" formControlName="montant" placeholder="Montant en DT" class="form-control"  aria-describedby="emailHelp"
+            [ngClass]="{ 'is-invalid': submitted && f.montant.errors }">
+            <div *ngIf="submitted && f.montant.errors" class="invalid-feedback">
+                <div *ngIf="f.montant.errors.required">Montant is required</div>
+                
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">duree</label>
+            <input type="text" formControlName="duree" class="form-control" id="exampleInputPassword1" placeholder="Nombre de mois"
+            [ngClass]="{ 'is-invalid': submitted && f.duree.errors }">
+                  <div *ngIf="submitted && f.duree.errors" class="invalid-feedback">
+                      <div *ngIf="f.duree.errors.required">Duree is required</div>
+                      
+                  </div>
+          </div>
+          <div class="form-group">
+              <label for="exampleInputPassword1">type de pret</label>
+              <select class="form-control" id="exampleFormControlSelect5" formControlName="typePret"
+              [ngClass]="{ 'is-invalid': submitted && f.typePret.errors }">
+                    <option *ngFor="let typePret of typePrets" [ngValue]="typePret">{{typePret}}</option>
+                    
+                  </select>
+                  
+                  <div *ngIf="submitted && f.typePret.errors" class="invalid-feedback">
+                      <div *ngIf="f.typePret.errors.required">Type de pret is required</div>
+                      
+                  </div>
+
+            </div>
+          
+          <button type="submit" class="btn btn-primary">Submit</button>
+
+          <div class="alert alert-danger" role="alert" *ngIf="showErrorMessage">
+            {{errorMessagePret}}
+           </div>
+           <div class="alert alert-success" role="alert" *ngIf="showSuccessMessage">
+             Pret créer !
+           </div>
+
+        </form>
+      </div>
+        
+    </div>
+</div>

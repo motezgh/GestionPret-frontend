@@ -1,0 +1,473 @@
+<div class="container" *ngIf="user">
+    <div class="row">
+            <div class="col-lg-4">
+               <div class="profile-card-4 z-depth-3">
+                <div class="card">
+                  <div class="card-body text-center bg-primary rounded-top">
+                   <div class="user-box">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar">
+                  </div>
+                  <h3 class="mb-1 text-white">{{user.prenom}} {{user.nom}}</h3>
+                  <h4 class="text-light">{{user.departement}}</h4>
+                  <h4 class="text-light">{{user.fonction}}</h4>
+                 </div>
+                  <div class="card-body">
+                    <ul class="list-group shadow-none">
+                    <li class="list-group-item">
+                      <div class="list-icon">
+                        <i class="fa fa-phone-square"></i>
+                      </div>
+                      <div class="list-details">
+                        <span>{{user.phone}}</span>
+                        <small>Mobile Number</small>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="list-icon">
+                        <i class="fa fa-envelope"></i>
+                      </div>
+                      <div class="list-details">
+                        <span>{{user.email}}</span>
+                        <small>Email Address</small>
+                      </div>
+                    </li>
+                    <!-- <li class="list-group-item">
+                      <div class="list-icon">
+                        <i class="fa fa-globe"></i>
+                      </div>
+                      <div class="list-details">
+                        <span>www.example.com</span>
+                        <small>Website Address</small>
+                      </div>
+                    </li> -->
+                    </ul>
+                    <!-- <div class="row text-center mt-4">
+                      <div class="col p-2">
+                       <h4 class="mb-1 line-height-5">154</h4>
+                        <small class="mb-0 font-weight-bold">Projects</small>
+                       </div>
+                        <div class="col p-2">
+                          <h4 class="mb-1 line-height-5">2.2k</h4>
+                         <small class="mb-0 font-weight-bold">Followers</small>
+                        </div>
+                        <div class="col p-2">
+                         <h4 class="mb-1 line-height-5">9.1k</h4>
+                         <small class="mb-0 font-weight-bold">Views</small>
+                        </div>
+                     </div> -->
+                   </div>
+                   <!-- <div class="card-footer text-center">
+                     <a href="javascript:void()" class="btn-social btn-facebook waves-effect waves-light m-1"><i class="fa fa-facebook"></i></a>
+                     <a href="javascript:void()" class="btn-social btn-google-plus waves-effect waves-light m-1"><i class="fa fa-google-plus"></i></a>
+                     <a href="javascript:void()" class="list-inline-item btn-social btn-behance waves-effect waves-light"><i class="fa fa-behance"></i></a>
+                     <a href="javascript:void()" class="list-inline-item btn-social btn-dribbble waves-effect waves-light"><i class="fa fa-dribbble"></i></a>
+                   </div> -->
+                 </div>
+               </div>
+            </div>
+            <div class="col-lg-8">
+               <div class="card z-depth-3">
+                <div class="card-body">
+                <ul class="nav nav-pills nav-pills-primary nav-justified">
+                    <li class="nav-item">
+                        <a href="javascript:void();" data-target="#profile" data-toggle="pill" class="nav-link active show"><i class="icon-user"></i> <span class="hidden-xs">Profile</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:void();" [appSort]="prets._embedded.prets" data-order="desc" data-name="createdAt" data-target="#prets" data-toggle="pill" class="nav-link"><i class="icon-envelope-open"></i> <span class="hidden-xs">Prets</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:void();" (click)='openEdit(user)' data-target="#edit" data-toggle="pill" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Edit</span></a>
+                    </li>
+                </ul>
+                <div class="tab-content p-3">
+                    <div class="tab-pane active show" id="profile">
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3><strong>ABOUT</strong></h3>
+                                <p>- Departement : {{user.departement}}</p>
+                                <p>- Fonction : {{user.fonction}}</p>
+                                <p>- Adresse : {{user.adresse}}</p>
+                                <p>- Salaire : {{user.salaire}} DT</p>
+                                <p>- Capacite de remboursement des prets : {{user.capRemb}} DT par mois</p>
+                                <p>- Date de naissance : {{user.dateNaissance}} </p>
+                                <h3><strong>CONTRAT</strong></h3>
+                                <p>
+                                    - Contrat type: {{user.contratType}}
+                                </p>
+                                <p>
+                                    - Date debut: {{user.debutContrat }} 
+                                </p>
+                                <p *ngIf="user.contratType!='CDI'" >
+                                    - Date fin: {{user.finContrat }} 
+                                </p>
+                                
+                            </div>
+                            <!-- <div class="col-md-6">
+                                <h6>Recent badges</h6>
+                                <a href="javascript:void();" class="badge badge-dark badge-pill">html5</a>
+                                <a href="javascript:void();" class="badge badge-dark badge-pill">react</a>
+                                <a href="javascript:void();" class="badge badge-dark badge-pill">codeply</a>
+                                <a href="javascript:void();" class="badge badge-dark badge-pill">angularjs</a>
+                                <a href="javascript:void();" class="badge badge-dark badge-pill">css3</a>
+                                <a href="javascript:void();" class="badge badge-dark badge-pill">jquery</a>
+                                <a href="javascript:void();" class="badge badge-dark badge-pill">bootstrap</a>
+                                <a href="javascript:void();" class="badge badge-dark badge-pill">responsive-design</a>
+                                <hr>
+                                <span class="badge badge-primary"><i class="fa fa-user"></i> 900 Followers</span>
+                                <span class="badge badge-success"><i class="fa fa-cog"></i> 43 Forks</span>
+                                <span class="badge badge-danger"><i class="fa fa-eye"></i> 245 Views</span>
+                            </div> -->
+                            <!-- <div class="col-md-12">
+                                <h5 class="mt-2 mb-3"><span class="fa fa-clock-o ion-clock float-right"></span> Mes dernieres demandes de Pret</h5>
+                                <table class="table table-hover table-striped">
+                                    <tbody>                                    
+                                        <tr>
+                                            <td>
+                                                <strong>Abby</strong> joined ACME Project Team in <strong>`Collaboration`</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Gary</strong> deleted My Board1 in <strong>`Discussions`</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Kensington</strong> deleted MyBoard3 in <strong>`Discussions`</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>John</strong> deleted My Board1 in <strong>`Discussions`</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <strong>Skell</strong> deleted his post Look at Why this is.. in <strong>`Discussions`</strong>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div> -->
+                        </div>
+                        <!--/row-->
+                    </div>
+                    <div class="tab-pane" id="prets" *ngIf="prets">
+                        <!-- <div class="alert alert-info alert-dismissible" role="alert">
+                       <button type="button" class="close" data-dismiss="alert">×</button>
+                        <div class="alert-icon">
+                         <i class="icon-info"></i>
+                        </div>
+                        <div class="alert-message">
+                          <span><strong>Info!</strong> Lorem Ipsum is simply dummy text.</span>
+                        </div>
+                      </div>
+                        <table class="table table-hover table-striped">
+                            <tbody>                                    
+                                <tr>
+                                    <td>
+                                       <span class="float-right font-weight-bold">3 hrs ago</span> Here is your a link to the latest summary report from the..
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                       <span class="float-right font-weight-bold">Yesterday</span> There has been a request on your account since that was..
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                       <span class="float-right font-weight-bold">9/10</span> Porttitor vitae ultrices quis, dapibus id dolor. Morbi venenatis lacinia rhoncus. 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                       <span class="float-right font-weight-bold">9/4</span> Vestibulum tincidunt ullamcorper eros eget luctus. 
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                       <span class="float-right font-weight-bold">9/4</span> Maxamillion ais the fix for tibulum tincidunt ullamcorper eros. 
+                                    </td>
+                                </tr>
+                            </tbody> 
+                        </table> -->
+
+                        <div class="card b-1 hover-shadow mb-20 " *ngFor="let pret of prets._embedded.prets | paginate: {id:'pret_pagination' ,
+                        itemsPerPage:5, currentPage:page,totalItems:prets?.length}">
+                            <div class="media card-body">
+                                <div class="media-left pr-12">
+                                    <!-- <img class="avatar avatar-xl no-radius" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="..."> -->
+                                </div>
+                                <div class="col-6">
+                                    <div class="media-body text-left">
+                                        <div class="mb-2">
+                                            <span class="fs-20 pr-16">Etat du Pret: </span>
+                                        </div>
+                                        <strong class="fs-16 fw-300 ls-1" >{{pret.etat}}</strong>
+                                    </div>
+                                    <div class="media-body text-left">
+                                        <div class="mb-2">
+                                            <span class="fs-20 pr-16">Montant: </span>
+                                        </div>
+                                        <strong class="fs-16 fw-300 ls-1" >{{pret.montant}} DT</strong>
+                                    </div>
+                                    <div class="media-body text-left">
+                                        <div class="mb-2">
+                                            <span class="fs-20 pr-16">Duree </span>
+                                        </div>
+                                        <strong class="fs-16 fw-300 ls-1" >{{pret.dureeRemboursement}} Mois</strong>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="media-body text-left">
+                                        <div class="mb-2">
+                                            <span class="fs-20 pr-16">Type de Pret: </span>
+                                        </div>
+                                        <strong class="fs-16 fw-300 ls-1" >{{pret.typePret.nameType}}</strong>
+                                    </div>
+                                    <div class="media-body text-left">
+                                        <div class="mb-2">
+                                            <span class="fs-20 pr-16">Echeance:</span>
+                                        </div>
+                                        <strong class="fs-16 fw-300 ls-1" >{{pret.echeance}} DT par mois</strong>
+                                    </div>
+                                    <div class="media-body text-left">
+                                        <div class="mb-2">
+                                            <span class="fs-20 pr-16">Creer le:</span>
+                                        </div>
+                                        <strong class="fs-16 fw-300 ls-1" >{{pret.createdAt | date:'dd , MMMM,yyyy'}}</strong>
+                                    </div>
+                                </div>
+                                
+                                
+                               
+                            </div>
+                    
+                            <footer class="card-footer flexbox ">
+                                <div *ngIf="pret.etat=='ACCEPTER'">
+                                    <span>Debut de remboursement : </span>
+                                    <strong>       {{pret.debutRemb | date:'dd , MMMM, yyyy'}}</strong>
+                                    <br>
+                                    <span>Fin de remboursement : </span>
+                                    <strong class="text-center">{{pret.finRemb | date:'dd , MMMM, yyyy'}}</strong>
+                                </div>
+                                <button type="button" *ngIf="pret.etat==='ENCOURS'" (click)="openEditPret(content,pret)" class="btn btn-warning float-left">Modifier</button>
+                                <button type="button" *ngIf="pret.etat==='ENCOURS'" (click)="deletePret(pret.id)" class="btn btn-danger float-right ">Supprimer</button>
+                            </footer>
+                            <ng-template #content let-modal >
+                                <div class="modal-header">
+                                  <h4 class="modal-title" id="modal-basic-title">Modifier votre pret</h4>
+                                  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <form novalidate [formGroup]="editPretForm" (ngSubmit)="updatePret(pret.id)" >
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">montant</label>
+                                        <input type="text" formControlName="montant" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                        [ngClass]="{ 'is-invalid':  g.montant.errors }">
+                                        <div *ngIf=" g.montant.errors" class="invalid-feedback">
+                                            <div *ngIf="g.montant.errors.required">Montant is required</div>
+                                            
+                                        </div>
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="exampleInputPassword1">duree</label>
+                                        <input type="text" formControlName="duree" class="form-control" id="exampleInputPassword1"
+                                        [ngClass]="{ 'is-invalid':  g.duree.errors }">
+
+                                        
+                                              <div *ngIf="g.duree.errors" class="invalid-feedback">
+                                                  <div *ngIf="g.duree.errors.required">Duree is required</div>
+                                                  
+                                              </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <label for="exampleInputPassword1">type de pret</label>
+                                          <select class="form-control" id="exampleFormControlSelect5" formControlName="typePret"
+                                          [ngClass]="{ 'is-invalid':  g.typePret.errors }">
+                                                <option *ngFor="let typePret of typePretNames" [ngValue]="typePret">{{typePret}}</option>
+                                                
+                                              </select>
+                                              
+                                              <div *ngIf=" g.typePret.errors" class="invalid-feedback">
+                                                  <div *ngIf="g.typePret.errors.required">Type de pret is required</div>
+                                                  
+                                              </div>
+                          
+                                        </div>
+                                    <button type="submit" [disabled]="editPretForm.invalid" class="btn btn-primary">Submit</button>
+                                  </form>
+                                </div>
+                                <!-- <div class="modal-footer">
+                                  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click') && updatePret(pret.id)">Save</button>
+                                </div> -->
+                              </ng-template>
+                        </div>
+
+
+
+                        <pagination-controls  id='pret_pagination'  responsive="true" (pageChange)="page = $event"></pagination-controls>
+
+                       
+
+                        <!-- <div *ngIf="prets">
+                            <div *ngFor="let pret of prets._embedded.prets">
+                                {{pret.etat}}
+                            </div>
+
+                
+                            
+                        </div> -->
+
+                    </div>
+                    <div class="tab-pane" id="edit">
+                        <div class="col-12">
+                            <button class="btn btn-primary btn-md col-5"  type="button" data-toggle="collapse" 
+                            data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                Modifier le mot de passe
+                              </button>
+                              <br>
+                              <div class="collapse" id="collapseExample">
+                                <div class="card card-body">
+                                    <form [formGroup]="passwordForm" (ngSubmit)="updatePassword(user.id)" novalidate>
+                                        <div class="form-group">
+                                          <label for="exampleInputEmail1">Mot de passe actuel</label>
+                                          <input type="password" class="form-control" formControlName='oldPass' id="exampleInputEmail1" aria-describedby="emailHelp">
+                                         
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="exampleInputPassword1">Nouveau mot de passe</label>
+                                          <input type="password" formControlName='newPass' class="form-control" id="exampleInputPassword1">
+                                        </div>
+                                        
+                                        <button type="submit" [disabled]="passwordForm.invalid" class="btn btn-primary">Submit</button>
+                                        <div class="alert alert-danger" role="alert" *ngIf="showErrorMessagePassword">
+                                            Erreur! mot de passe actuel incorrect !
+                                           </div>
+                                           <div class="alert alert-success" role="alert" *ngIf="showSuccessMessagePassword">
+                                             Votre mot de passe a ete modifier !
+                                           </div> 
+                                      </form>
+                                </div>
+                              </div>
+                              <br>
+                        </div>
+
+                        <div class="col-12">
+                            <button class="btn btn-primary btn-md col-5" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">
+                                Modifier le username
+                              </button>
+                              <br>
+                              <div class="collapse" id="collapseExample2">
+                                <div class="card card-body">
+                                    <form [formGroup]="usernameForm" (ngSubmit)="updateUsername(user.id)" novalidate>
+                                        <div class="form-group">
+                                          <label for="exampleInputEmail1">Nouveau Username</label>
+                                          <input type="text" class="form-control" formControlName='username'  aria-describedby="emailHelp">
+                                         
+                                        </div>
+                                        
+                                        
+                                        <button type="submit" [disabled]="usernameForm.invalid" class="btn btn-primary">Submit</button>
+                                        <div class="alert alert-danger" role="alert" *ngIf="showErrorMessageUsername">
+                                            {{errorMessageUsername}}
+                                           </div>
+                                           <div class="alert alert-success" role="alert" *ngIf="showSuccessMessageUsername">
+                                             Votre Username a ete modifier, vous devez reconnecter!
+                                           </div>  
+                                    </form>
+                                </div>
+                              </div>
+                              <br>
+                        </div>
+                        
+                        <form [formGroup]="editUserForm" (ngSubmit)="editUser(user.id)" novalidate>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Nom</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="text" formControlName="nom" id="nom" >
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Prenom</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="text" formControlName="prenom" id="prenom" >
+                                </div>
+                            </div>
+                            
+                            <!-- <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Change profile</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="file">
+                                </div>
+                            </div> -->
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Mobile</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="text" formControlName="phone" id="phone" >
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Address</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="text" formControlName="adresse" id="adresse" >
+                                </div>
+                            </div>
+                            <!-- <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label"></label>
+                                <div class="col-lg-6">
+                                    <input class="form-control" type="text" value="" placeholder="City">
+                                </div>
+                                <div class="col-lg-3">
+                                    <input class="form-control" type="text" value="" placeholder="State">
+                                </div>
+                            </div> -->
+                           
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Date de naissance</label>
+                                
+                                <div class="col-6">
+                                    <small class="form-text text-muted">format: jj/mm/aaaa</small>
+                                    <input type="text"  class="form-control"  formControlName="dateNaissance" 
+                                    id="dateNaissance" [ngClass]="{ 'is-invalid': submitted && f.dateNaissance.errors }"  >
+                                </div>
+                                <div class="col-12" *ngIf="submitted && f.dateNaissance.errors" class="invalid-feedback">
+                                    <div *ngIf="f.dateNaissance.errors">date format invalid</div>
+                                    
+                                </div>
+                            </div>
+                            <!-- <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="password" value="11111122333">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
+                                <div class="col-lg-9">
+                                    <input class="form-control" type="password" value="11111122333">
+                                </div>
+                            </div> -->
+                            <div class="form-group row">
+                                <label class="col-lg-3 col-form-label form-control-label"></label>
+                                <div class="col-lg-9">
+                                    
+                                    <button type="submit" class="btn btn-primary" >Sauvgarder</button>
+                                    
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+          </div>
+          </div>
+            
+        </div>
+    </div>
+
+
+    
